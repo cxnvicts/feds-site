@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>convict</title>
+    <link rel="stylesheet" href="RAT1.css">
+
+    <style>
+        /* Full page background setup for the video */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            color: rgb(255, 255, 255);
+            position: relative;
+            text-align: center;
+        }
+
+        /* ASCII Art text style */
+        .ascii-art {
+            font-size: 12px; /* Reduced font size */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-shadow: 
+                0 0 5px #ffffff,   
+                0 0 10px #ffffff,  
+                0 0 15px #ffffff;
+            animation: glow 2s ease-in-out infinite;
+            z-index: 10; /* Place above the video */
+            position: relative;
+        }
+
+        /* Normal text style */
+        .normal-text {
+            font-size: 12px; /* Smaller font size */
+            font-variant: small-caps;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 3px #ffffff,  
+                0 0 6px #ffffff;   
+            z-index: 10; /* Place above the video */
+            position: relative;
+        }
+
+        /* Full screen video background */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the whole screen */
+            z-index: -1; /* Behind all content */
+        }
+
+        /* Dark overlay for the entire video */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            z-index: 1; /* Positioned above the video, but behind text */
+        }
+
+        /* Lowercase style for the links */
+        .normal-text a {
+            color: #ffffff; /* White color by default */
+            text-decoration: none; /* Remove underline */
+            text-transform: lowercase; /* Convert text to lowercase */
+            font-size: 20px; /* Increase font size */
+        }
+
+        /* Hover effect for the link */
+        .normal-text a:hover {
+            color: #638bf0; /* Change to the desired color (#0938b0) when hovered */
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="video-background" autoplay muted loop>
+        <source src="snow1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark overlay on top of the video -->
+    <div class="overlay"></div>
+
+    <div>
+        <!-- ASCII Art Content -->
+        <pre class="ascii-art">
+
+                                   
+   oec :                           
+  @88888         u.      uL   ..   
+  8"*88%   ...ue888b   .@88b  @88R 
+  8b.      888R Y888r '"Y888k/"*P  
+ u888888>  888R I888>    Y888L     
+  8888R    888R I888>     8888     
+  8888P    888R I888>     `888N    
+  *888>   u8888cJ888   .u./"888&   
+  4888     "*888*P"   d888" Y888*" 
+  '888       'Y"      ` "Y   Y"    
+   88R                             
+   88>                             
+   48                              
+   '8                              
+
+        </pre>
+
+        <div class="normal-text">
+            <a href="https://t.me/feddedkitty">telegram</a> <b>      </b>  <a>-</a> <a href="https://discord.com/users/516642632768815125">discord</a>
+        </div>
+    </div>
+
+    <!-- Hidden audio element to play music -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="love1.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
