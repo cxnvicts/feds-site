@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inactive</title>
+    <link rel="stylesheet" href="RAT1.css">
+    <style>
+        /* Full page background setup for the video */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            color: white;
+            position: relative;
+            text-align: center;
+        }
+
+        /* ASCII Art text style */
+        .ascii-art {
+            font-size: 16px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-shadow: 
+                0 0 5px #FF4500,   
+                0 0 10px #FF6347,  
+                0 0 15px #FF6347;
+            animation: glow 2s ease-in-out infinite;
+            z-index: 10; /* Place above the video */
+            position: relative;
+        }
+
+        /* Normal text style */
+        .normal-text {
+            font-size: 20px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 3px #FF4500,  
+                0 0 6px #FF6347;   
+            z-index: 10; /* Place above the video */
+            position: relative;
+        }
+
+        /* Full screen video background */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the whole screen */
+            z-index: -1; /* Behind all content */
+        }
+
+        /* Rain canvas */
+        #rainCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind content */
+        }
+
+        /* Keyframe animation for glowing text */
+        @keyframes glow {
+            0% { 
+                text-shadow: 0 0 5px #FF4500, 0 0 10px #FF6347, 0 0 15px #FF6347;
+            }
+            50% { 
+                text-shadow: 0 0 10px #FF4500, 0 0 15px #FF6347, 0 0 20px #FF6347;
+            }
+            100% { 
+                text-shadow: 0 0 5px #FF4500, 0 0 10px #FF6347, 0 0 15px #FF6347;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="video-background" autoplay muted loop>
+        <source src="snow1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div>
+        <!-- ASCII Art Content -->
+        <pre class="ascii-art">
+██▓ ███▄    █  ▄▄▄       ▄████▄  ▄▄▄█████▓ ██▓ ██▒   █▓▓█████ 
+▓██▒ ██ ▀█   █ ▒████▄    ▒██▀ ▀█  ▓  ██▒ ▓▒▓██▒▓██░   █▒▓█   ▀ 
+▒██▒▓██  ▀█ ██▒▒██  ▀█▄  ▒▓█    ▄ ▒ ▓██░ ▒░▒██▒ ▓██  █▒░▒███   
+░██░▓██▒  ▐▌██▒░██▄▄▄▄██ ▒▓▓▄ ▄██▒░ ▓██▓ ░ ░██░  ▒██ █░░▒▓█  ▄ 
+░██░▒██░   ▓██░ ▓█   ▓██▒▒ ▓███▀ ░  ▒██▒ ░ ░██░   ▒▀█░  ░▒████▒
+░▓  ░ ▒░   ▒ ▒  ▒▒   ▓▒█░░ ░▒ ▒  ░  ▒ ░░   ░▓     ░ ▐░  ░░ ▒░ ░
+▒ ░░ ░░   ░ ▒░  ▒   ▒▒ ░  ░  ▒       ░     ▒ ░   ░ ░░   ░ ░  ░
+▒ ░   ░   ░ ░   ░   ▒   ░          ░       ▒ ░     ░░     ░   
+░           ░       ░  ░░ ░                ░        ░     ░  ░
+                       ░                          ░          
+                  ░                                                      ░ ░                        
+        </pre>
+
+        <div class="normal-text">
+            Owns You Get Ratted
+        </div>
+    </div>
+
+    <!-- JavaScript for rain effect -->
+    <script>
+        // Set up the canvas and get context for rain animation
+        const canvas = document.getElementById("rainCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Resize canvas to fit the window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Raindrop array
+        let raindrops = [];
+
+        // Create a raindrop class
+        class Raindrop {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -100;
+                this.speed = Math.random() * 4 + 1;  // Speed of raindrop
+                this.length = Math.random() * 20 + 10;  // Length of raindrop
+            }
+
+            // Update raindrop position
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = Math.random() * -100;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            // Draw raindrop
+            draw() {
+                ctx.strokeStyle = "rgba(174, 194, 224, 0.8)"; // Light blue for rain
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.stroke();
+            }
+        }
+
+        // Generate initial raindrops
+        for (let i = 0; i < 100; i++) {
+            raindrops.push(new Raindrop());
+        }
+
+        // Animation loop for rain effect
+        function animateRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let raindrop of raindrops) {
+                raindrop.update();
+                raindrop.draw();
+            }
+            requestAnimationFrame(animateRain);  // Request the next frame
+        }
+
+        // Start the animation when the window is loaded
+        window.onload = () => {
+            animateRain();
+        }
+    </script>
+</body>
+</html>
