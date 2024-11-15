@@ -1,0 +1,46 @@
+/* RAT1.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    color: white;
+    text-align: center;
+}
+
+.ascii-art {
+    font-size: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-shadow: 
+        0 0 5px #ffffff,   /* Slight red glow */
+        0 0 10px #ffffff,  /* Soft orange-red glow */
+        0 0 15px #ffffff;  /* Light orange glow */
+    animation: glow 2s ease-in-out infinite;
+}
+
+.normal-text {
+    font-size: 20px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 3px #ffffff,   /* Subtle red glow */
+        0 0 6px #ffffff;   /* Soft orange-red glow */
+}
+
+@keyframes glow {
+    0% { 
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+    }
+    50% { 
+        text-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #ffffff;
+    }
+    100% { 
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+    }
+}
